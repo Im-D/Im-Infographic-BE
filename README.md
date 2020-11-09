@@ -2,6 +2,10 @@
 
 Github을 DB처럼 사용하기
 
+## Github API Explore
+
+https://developer.github.com/v4/explorer/
+
 ## 필요한 데이터
 
 ### PR
