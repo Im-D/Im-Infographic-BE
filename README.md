@@ -10,13 +10,13 @@ https://developer.github.com/v4/explorer/
 
 ### PR
 
-- [] Post Title
-- [] Post Link
+- [x] Post Title
+- [x] Post Link
 - [] Post Status
-- [] Creator (이미지, 이름)
-- [] Reviewer (이미지, 이름)
+- [x] Creator (이미지, 이름)
+- [x] Reviewer (이미지, 이름)
 - [] Reviewer 상태 (승인, 대기중, None) 
-- [] Date
+- [x] Date
 
 ### User
 
