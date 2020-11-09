@@ -1,0 +1,25 @@
+{
+  "name": "Im-Infographic-BE",
+  "version": "1.0.0",
+  "description": "Github을 DB처럼 사용하기",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node ./graphql-server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Im-D/Im-Infographic-BE.git"
+  },
+  "keywords": [],
+  "author": "IMD",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Im-D/Im-Infographic-BE/issues"
+  },
+  "homepage": "https://github.com/Im-D/Im-Infographic-BE#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0"
+  }
+}
