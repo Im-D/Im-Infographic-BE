@@ -1,72 +1,23 @@
-const createQuery = ({ query, variables = {} }) => {
-  return JSON.stringify({ query, variables })
-}
+const { createQuery } = require('../utils/Query.js')
 
-exports.LOGIN_QUERY = createQuery({
-  query: `query { 
-    viewer { 
-      login  
-    }
-  }`
-});
-
-exports.IMD_TEAM_INFO_QUERY = createQuery({
+exports.REPO_INFO_QUERY = createQuery({
   query: `{
     viewer {
-      companyHTML
-      avatarUrl(size: 16)
-      company
-      bio
-      bioHTML
-      email
-      databaseId
-      login
-      name
-      location
-      url
-    }
-  }`
-})
-
-exports.IMD_REPOS_QUERY = createQuery({
-  query: `{
-    viewer {
-      repositories(affiliations: OWNER, first: 10, orderBy: {field: UPDATED_AT, direction: DESC}) {
-        totalCount
-        nodes {
-          name
-          nameWithOwner
-          description
-          descriptionHTML
-          id
-          url
-          updatedAt
-          homepageUrl
-        }
-      }
-    }
-  }
-  `
-})
-
-exports.AUTHOR_QUERY = createQuery({
-  query: `{
-    viewer{
       repository(name: "Dev-Docs") {
-        collaborators {
-          edges {
-            node {
-              id
-              login
-              avatarUrl(size: 16)
-              name
-              url
-            }
-          }
-        }
+        id
+        createdAt
+        url
+        updatedAt
+        name
+        nameWithOwner
+        homepageUrl
+        description
+        descriptionHTML
+        forkCount
+        stargazerCount
       }
     }
-    }`
+  }`
 })
 
 exports.PR_QUERY = createQuery({
