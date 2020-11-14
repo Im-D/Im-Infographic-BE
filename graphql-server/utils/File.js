@@ -16,5 +16,5 @@ exports.writeFile = ({ fileDirName = '', data = '' }) => {
   checkDirExist(process.env.DATA_DIR)
   checkDirExist(`${process.env.DATA_DIR}/${fileDirName}`)
 
-  return fs.writeFileSync(`${process.env.DATA_DIR}/${fileDirName}/${getTodayFileName()}.json`, data)
+  return fs.writeFileSync(`${process.env.DATA_DIR}/${fileDirName}/${getTodayFileName()}.json`, JSON.stringify(data))
 }

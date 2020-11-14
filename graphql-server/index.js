@@ -7,34 +7,41 @@ const UserQuery = require('./query/User.js');
 const IMDQuery = require('./query/IMD.js');
 const RepoQuery = require('./query/Repository.js');
 
-// Login User
-request({ query: UserQuery.LOGIN_QUERY }).then(data => {
-  console.log('===LOGIN_QUERY===')
-  writeFile({ fileDirName: 'login', data })
-})
-
 // Author
-request({ query: UserQuery.AUTHOR_QUERY }).then(data => {
+request({ query: UserQuery.AUTHOR_QUERY }).then(({ data }) => {
   console.log('===Author===')
-  writeFile({ fileDirName: 'author', data })
+
+  const edges = data.viewer.repository.collaborators.edges || []
+  const collaborators = edges
+    .filter((item) => item.node.id !== 'MDQ6VXNlcjYwOTIwMTYw')
+    .reduce((acc, { node }) => {
+      acc[node.id] = node
+      return acc
+    }, {})
+
+  writeFile({ fileDirName: 'author', data: collaborators })
 })
 
 // TEAM Info
-request({ query: IMDQuery.IMD_INFO_QUERY }).then(data => {
+request({ query: IMDQuery.IMD_INFO_QUERY }).then(({ data: { viewer } }) => {
   console.log('===IMD Info ===')
-  writeFile({ fileDirName: 'imd_info', data })
+  writeFile({ fileDirName: 'imd_info', data: viewer })
 })
 
 // TEAM Repos
-request({ query: IMDQuery.IMD_REPOS_QUERY }).then(data => {
+request({ query: IMDQuery.IMD_REPOS_QUERY }).then(({ data: { viewer: { repositories } } }) => {
   console.log('===IMD Team ===')
+  const data = {
+    repos: repositories.nodes,
+    totalCount: repositories.totalCount
+  }
   writeFile({ fileDirName: 'imd_repos', data })
 })
 
 // Repo Info
-request({ query: IMDQuery.REPO_INFO_QUERY }).then(data => {
+request({ query: RepoQuery.REPO_INFO_QUERY }).then(({ data: { viewer: { repository } } }) => {
   console.log('===Repo Info ===')
-  writeFile({ fileDirName: 'repo_info', data })
+  writeFile({ fileDirName: 'repo_info', data: repository })
 })
 
 // PR

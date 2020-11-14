@@ -4,16 +4,15 @@ exports.REPO_INFO_QUERY = createQuery({
   query: `{
     viewer {
       repository(name: "Dev-Docs") {
-        createdAt
-        url
-        updatedAt
         name
         nameWithOwner
-        homepageUrl
+        createdAt
+        updatedAt
         description
         descriptionHTML
         forkCount
         stargazerCount
+        url
       }
     }
   }`

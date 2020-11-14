@@ -14,7 +14,7 @@ exports.request = ({ query }) => {
   return new Promise((resolve, reject) => {
     axios(config)
       .then((res) => {
-        resolve(JSON.stringify(res.data))
+        resolve(res.data)
       })
       .catch((e) => {
         console.log(e);

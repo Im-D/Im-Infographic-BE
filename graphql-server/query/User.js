@@ -10,14 +10,17 @@ exports.LOGIN_QUERY = createQuery({
 
 exports.AUTHOR_QUERY = createQuery({
   query: `{
-    viewer{
+    viewer {
       repository(name: "Dev-Docs") {
         collaborators {
           edges {
             node {
+              id
               login
-              avatarUrl(size: 16)
               name
+              avatarUrl(size: 16)
+              bio
+              bioHTML
               url
             }
           }
