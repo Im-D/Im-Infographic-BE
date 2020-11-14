@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { request } = require('./utils/Fetch');
 const Query = require('./query');
 
