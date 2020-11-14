@@ -10,7 +10,7 @@ exports.LOGIN_QUERY = createQuery({
   }`
 });
 
-exports.IMD_TEAM_QUERY = createQuery({
+exports.IMD_TEAM_INFO_QUERY = createQuery({
   query: `{
     viewer {
       companyHTML
