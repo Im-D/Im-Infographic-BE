@@ -15,7 +15,6 @@ exports.AUTHOR_QUERY = createQuery({
         collaborators {
           edges {
             node {
-              id
               login
               avatarUrl(size: 16)
               name

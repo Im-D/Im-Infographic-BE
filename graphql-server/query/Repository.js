@@ -4,7 +4,6 @@ exports.REPO_INFO_QUERY = createQuery({
   query: `{
     viewer {
       repository(name: "Dev-Docs") {
-        id
         createdAt
         url
         updatedAt
@@ -35,7 +34,6 @@ exports.PR_QUERY = createQuery({
               url
               login
               ... on User {
-                id
                 email
                 url
                 bioHTML
@@ -53,10 +51,8 @@ exports.PR_QUERY = createQuery({
             reviewRequests(first: 10) {
               edges {
                 node {
-                  id
                   requestedReviewer {
                     ... on User {
-                      id
                       email
                       login
                       name

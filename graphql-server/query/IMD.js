@@ -9,7 +9,6 @@ exports.IMD_INFO_QUERY = createQuery({
       bio
       bioHTML
       email
-      databaseId
       login
       name
       location
@@ -28,7 +27,6 @@ exports.IMD_REPOS_QUERY = createQuery({
           nameWithOwner
           description
           descriptionHTML
-          id
           url
           updatedAt
           homepageUrl
