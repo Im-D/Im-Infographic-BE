@@ -28,6 +28,27 @@ exports.IMD_TEAM_INFO_QUERY = createQuery({
   }`
 })
 
+exports.IMD_REPOS_QUERY = createQuery({
+  query: `{
+    viewer {
+      repositories(affiliations: OWNER, first: 10, orderBy: {field: UPDATED_AT, direction: DESC}) {
+        totalCount
+        nodes {
+          name
+          nameWithOwner
+          description
+          descriptionHTML
+          id
+          url
+          updatedAt
+          homepageUrl
+        }
+      }
+    }
+  }
+  `
+})
+
 exports.AUTHOR_QUERY = createQuery({
   query: `{
     viewer{
