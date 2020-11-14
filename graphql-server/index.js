@@ -1,4 +1,4 @@
-const { request } = require('./utils/request');
+const { request } = require('./utils/Fetch');
 const Query = require('./query');
 
 // Login User
