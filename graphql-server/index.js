@@ -13,8 +13,14 @@ request({query: Query.PR_QUERY}).then(data => {
   console.dir(data)
 })
 
+// TEAM Repo
+request({query: Query.IMD_TEAM_QUERY}).then(data => {
+  console.log('===IMD Tea ===')
+  console.dir(data)
+})
+
 // Author
-request({query: Query.PR_QUERY}).then(data => {
+request({query: Query.AUTHOR_QUERY}).then(data => {
   console.log('===Author===')
   console.dir(data)
 })

@@ -10,6 +10,24 @@ exports.LOGIN_QUERY = createQuery({
   }`
 });
 
+exports.IMD_TEAM_QUERY = createQuery({
+  query: `{
+    viewer {
+      companyHTML
+      avatarUrl(size: 16)
+      company
+      bio
+      bioHTML
+      email
+      databaseId
+      login
+      name
+      location
+      url
+    }
+  }`
+})
+
 exports.AUTHOR_QUERY = createQuery({
   query: `{
     viewer{
