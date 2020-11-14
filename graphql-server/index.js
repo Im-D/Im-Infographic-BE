@@ -1,4 +1,4 @@
-const { request } = require('./request');
+const { request } = require('./utils/request');
 const Query = require('./query');
 
 // Login User
