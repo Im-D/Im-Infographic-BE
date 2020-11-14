@@ -12,3 +12,9 @@ request({query: Query.PR_QUERY}).then(data => {
   console.log('===PR_QUERY===')
   console.dir(data)
 })
+
+// Author
+request({query: Query.PR_QUERY}).then(data => {
+  console.log('===Author===')
+  console.dir(data)
+})

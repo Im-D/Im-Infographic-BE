@@ -10,6 +10,26 @@ exports.LOGIN_QUERY = createQuery({
   }`
 });
 
+exports.AUTHOR_QUERY = createQuery({
+  query: `{
+    viewer{
+      repository(name: "Dev-Docs") {
+        collaborators {
+          edges {
+            node {
+              id
+              login
+              avatarUrl(size: 16)
+              name
+              url
+            }
+          }
+        }
+      }
+    }
+    }`
+})
+
 exports.PR_QUERY = createQuery({
   query: `{
     viewer {
