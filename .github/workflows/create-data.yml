@@ -1,4 +1,4 @@
-name: cron
+name: create data
 
 on:
   schedule:
@@ -30,7 +30,8 @@ jobs:
           npm ci
 
       - name: NPM run
-      - run: npm run dev
+        run: |
+          npm run dev
         env:
           OWNER: ${{ secrets.OWNER }}
           REPO_NAME: ${{ secrets.REPO_NAME }}
