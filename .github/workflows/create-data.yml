@@ -1,0 +1,41 @@
+name: cron
+
+on:
+  schedule:
+    - cron: '55 14 * * *'
+
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.0
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Cache node modules
+        uses: actions/cache@v2.0.0
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+
+      # 일반적인 ci를 실행합니다.
+      - name: CI
+        run: |
+          npm ci
+
+      - name: NPM run
+      - run: npm run dev
+        env:
+          OWNER: ${{ secrets.OWNER }}
+          REPO_NAME: ${{ secrets.REPO_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }} 
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_URL: ${{ secrets.GITHUB_URL }}
+          DATA_DIR: ${{ secretsDATA_DIR }}
