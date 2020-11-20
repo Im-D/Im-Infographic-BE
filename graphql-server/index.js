@@ -45,7 +45,9 @@ request({ query: RepoQuery.REPO_INFO_QUERY }).then(({ data: { viewer: { reposito
 })
 
 // PR
-request({ query: RepoQuery.PR_QUERY }).then(data => {
+request({ query: RepoQuery.PR_QUERY }).then(({ data }) => {
   console.log('===PR_QUERY===')
-  writeFile({ fileDirName: 'pr', data })
+  const { viewer: { repository: { pullRequests: { nodes } } } } = data
+
+  writeFile({ fileDirName: 'pr', data: { 'prList': nodes } })
 })
