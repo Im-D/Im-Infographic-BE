@@ -39,4 +39,4 @@ jobs:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           GITHUB_URL: ${{ secrets.GITHUB_URL }}
-          DATA_DIR: ${{ secretsDATA_DIR }}
+          DATA_DIR: ${{ secrets.DATA_DIR }}
