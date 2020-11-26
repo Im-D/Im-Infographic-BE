@@ -24,7 +24,7 @@ request({ query: UserQuery.AUTHOR_QUERY }).then(({ data }) => {
   creatCommit({
     path: 'author', 
     fileName: getTodayFileName(), 
-    contents: JSON.stringify(collaborators)
+    contents: collaborators
   })
 })
 
@@ -35,7 +35,7 @@ request({ query: IMDQuery.IMD_INFO_QUERY }).then(({ data }) => {
   creatCommit({
     path: 'imd_info', 
     fileName: getTodayFileName(), 
-    contents: JSON.stringify(data)
+    contents: data
   })
 })
 
@@ -49,7 +49,7 @@ request({ query: RepoQuery.REPOS_QUERY }).then(({ data: { viewer: { repositories
   creatCommit({
     path: 'imd_repos', 
     fileName: getTodayFileName(), 
-    contents: JSON.stringify(data)
+    contents: data
   })
 })
 
@@ -61,6 +61,6 @@ request({ query: RepoQuery.PR_QUERY }).then(({ data }) => {
   creatCommit({
     path: 'pr', 
     fileName: getTodayFileName(), 
-    contents: JSON.stringify({prList: nodes})
+    contents: {prList: nodes}
   })
 })

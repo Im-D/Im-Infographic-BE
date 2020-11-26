@@ -22,7 +22,7 @@ exports.creatCommit = ({ path, fileName, contents }) => {
       repo: process.env.REPO_NAME,
       path: `data/${path}/${fileName}.json`,
       message: createCommit({ path, fileName }),
-      content: encodeBase64(contents),
+      content: encodeBase64(JSON.stringify(contents)),
       committer: {
         name: process.env.USER_NAME,
         email: process.env.USER_EMAIL
