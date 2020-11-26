@@ -22,20 +22,20 @@ request({ query: UserQuery.AUTHOR_QUERY }).then(({ data }) => {
     }, {})
 
   creatCommit({
-    path: 'author', 
-    fileName: getTodayFileName(), 
+    path: 'author',
+    fileName: getTodayFileName(),
     contents: collaborators
   })
 })
 
 // TEAM Info
-request({ query: IMDQuery.IMD_INFO_QUERY }).then(({ data }) => {
+request({ query: IMDQuery.IMD_INFO_QUERY }).then(({ data: { viewer } }) => {
   console.log('===IMD Info ===')
 
   creatCommit({
-    path: 'imd_info', 
-    fileName: getTodayFileName(), 
-    contents: data
+    path: 'imd_info',
+    fileName: getTodayFileName(),
+    contents: viewer
   })
 })
 
@@ -47,8 +47,8 @@ request({ query: RepoQuery.REPOS_QUERY }).then(({ data: { viewer: { repositories
   }
 
   creatCommit({
-    path: 'imd_repos', 
-    fileName: getTodayFileName(), 
+    path: 'imd_repos',
+    fileName: getTodayFileName(),
     contents: data
   })
 })
@@ -59,8 +59,8 @@ request({ query: RepoQuery.PR_QUERY }).then(({ data }) => {
   const { viewer: { repository: { pullRequests: { nodes } } } } = data
 
   creatCommit({
-    path: 'pr', 
-    fileName: getTodayFileName(), 
-    contents: {prList: nodes}
+    path: 'pr',
+    fileName: getTodayFileName(),
+    contents: { prList: nodes }
   })
 })
