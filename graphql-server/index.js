@@ -35,7 +35,7 @@ request({ query: IMDQuery.IMD_INFO_QUERY }).then(({ data }) => {
   creatCommit({
     path: 'imd_info', 
     fileName: getTodayFileName(), 
-    contents: JSON.stringify(viewer)
+    contents: JSON.stringify(data)
   })
 })
 

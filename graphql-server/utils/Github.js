@@ -1,4 +1,5 @@
 const { Octokit } = require("@octokit/rest");
+const { writeFile } = require('./File');
 
 const encodeBase64 = (contents) => {
   return Buffer.from(contents).toString('base64')
@@ -13,21 +14,25 @@ exports.creatCommit = ({ path, fileName, contents }) => {
     auth: process.env.GITHUB_TOKEN,
   });
 
-  octokit.repos.createOrUpdateFileContents({
-    owner: process.env.OWNER,
-    repo: process.env.REPO_NAME,
-    path: `data/${path}/${fileName}.json`,
-    message: createCommit({ path, fileName }),
-    content: encodeBase64(contents),
-    committer: {
-      name: process.env.USER_NAME,
-      email: process.env.USER_EMAIL
-    },
-    author: {
-      name: process.env.USER_NAME,
-      email: process.env.USER_EMAIL
-    }
-  }).then(() => {
-    console.log(`Success ${path}/${fileName}.json`)
-  })
+  if (process.env.NODE_ENV === 'develop') {
+    writeFile({ fileDirName: path, data: contents })
+  } else {
+    octokit.repos.createOrUpdateFileContents({
+      owner: process.env.OWNER,
+      repo: process.env.REPO_NAME,
+      path: `data/${path}/${fileName}.json`,
+      message: createCommit({ path, fileName }),
+      content: encodeBase64(contents),
+      committer: {
+        name: process.env.USER_NAME,
+        email: process.env.USER_EMAIL
+      },
+      author: {
+        name: process.env.USER_NAME,
+        email: process.env.USER_EMAIL
+      }
+    }).then(() => {
+      console.log(`Success ${path}/${fileName}.json`)
+    })
+  }
 }
