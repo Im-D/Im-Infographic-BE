@@ -26,6 +26,15 @@ exports.PR_QUERY = createQuery({
           nodes {
             title
             url
+            author {
+              ... on User {
+                id
+                name
+                avatarUrl(size: 16)
+                bio
+                url
+              }
+            }
             createdAt
             body
             labels(first: 10) {
