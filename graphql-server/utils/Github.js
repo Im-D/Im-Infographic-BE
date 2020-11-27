@@ -9,7 +9,7 @@ const createCommit = ({ path, fileName }) => {
   return `create : ${path}/${fileName}.json`
 }
 
-exports.creatCommit = ({ path, fileName, contents }) => {
+exports.creatCommit = async ({ path, fileName, contents }) => {
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
   });
@@ -17,22 +17,25 @@ exports.creatCommit = ({ path, fileName, contents }) => {
   if (process.env.NODE_ENV === 'develop') {
     writeFile({ fileDirName: path, data: contents })
   } else {
-    octokit.repos.createOrUpdateFileContents({
-      owner: process.env.OWNER,
-      repo: process.env.REPO_NAME,
-      path: `data/${path}/${fileName}.json`,
-      message: createCommit({ path, fileName }),
-      content: encodeBase64(JSON.stringify(contents)),
-      committer: {
-        name: process.env.USER_NAME,
-        email: process.env.USER_EMAIL
-      },
-      author: {
-        name: process.env.USER_NAME,
-        email: process.env.USER_EMAIL
-      }
-    }).then(() => {
+    try {
+      await octokit.repos.createOrUpdateFileContents({
+        owner: process.env.OWNER,
+        repo: process.env.REPO_NAME,
+        path: `data/${path}/${fileName}.json`,
+        message: createCommit({ path, fileName }),
+        content: encodeBase64(JSON.stringify(contents)),
+        committer: {
+          name: process.env.USER_NAME,
+          email: process.env.USER_EMAIL
+        },
+        author: {
+          name: process.env.USER_NAME,
+          email: process.env.USER_EMAIL
+        }
+      })
       console.log(`Success ${path}/${fileName}.json`)
-    })
+    } catch (e) {
+      console.log(`Error ${e} / ${path}/${fileName}`)
+    }
   }
 }
