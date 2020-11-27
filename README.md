@@ -15,15 +15,16 @@ https://developer.github.com/v4/explorer/
 - [] Post Status
 - [x] Creator (이미지, 이름)
 - [x] Reviewer (이미지, 이름)
-- [] Reviewer 상태 (승인, 대기중, None) 
+- [x] Reviewer 상태 (승인, 대기중, None) 
 - [x] Date
 
 ### User
 
-- [] Name
-- [] Image
-- [] Comment
-- [] Github Link
+- [x] Name
+- [x] Image
+- [x] Github Link
 - [] Point
 
 ### Rank
+
+> 추후 추가
