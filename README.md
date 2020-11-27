@@ -12,7 +12,7 @@ https://developer.github.com/v4/explorer/
 
 - [x] Post Title
 - [x] Post Link
-- [] Post Status
+- [x] Post Status
 - [x] Creator (이미지, 이름)
 - [x] Reviewer (이미지, 이름)
 - [x] Reviewer 상태 (승인, 대기중, None) 
