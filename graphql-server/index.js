@@ -9,58 +9,62 @@ const IMDQuery = require('./query/IMD.js');
 const UserQuery = require('./query/User.js');
 const RepoQuery = require('./query/Repository.js');
 
-// Author
-request({ query: UserQuery.AUTHOR_QUERY }).then(({ data }) => {
-  console.log('===Author===')
+const CreateData = async () => {
+  // Author
+  await request({ query: UserQuery.AUTHOR_QUERY }).then(({ data }) => {
+    console.log('===Author===')
 
-  const nodes = data.viewer.repository.collaborators.nodes || []
-  const collaborators = nodes
-    .filter((item) => item.id !== 'MDQ6VXNlcjYwOTIwMTYw')
-    .reduce((acc, node) => {
-      acc[node.id] = node
-      return acc
-    }, {})
+    const nodes = data.viewer.repository.collaborators.nodes || []
+    const collaborators = nodes
+      .filter((item) => item.id !== 'MDQ6VXNlcjYwOTIwMTYw')
+      .reduce((acc, node) => {
+        acc[node.id] = node
+        return acc
+      }, {})
 
-  creatCommit({
-    path: 'author',
-    fileName: getTodayFileName(),
-    contents: collaborators
+    creatCommit({
+      path: 'author',
+      fileName: getTodayFileName(),
+      contents: collaborators
+    })
   })
-})
 
-// TEAM Info
-request({ query: IMDQuery.IMD_INFO_QUERY }).then(({ data: { viewer } }) => {
-  console.log('===IMD Info ===')
+  // TEAM Info
+  await request({ query: IMDQuery.IMD_INFO_QUERY }).then(({ data: { viewer } }) => {
+    console.log('===IMD Info ===')
 
-  creatCommit({
-    path: 'imd_info',
-    fileName: getTodayFileName(),
-    contents: viewer
+    creatCommit({
+      path: 'imd_info',
+      fileName: getTodayFileName(),
+      contents: viewer
+    })
   })
-})
 
-// TEAM Repos
-request({ query: RepoQuery.REPOS_QUERY }).then(({ data: { viewer: { repositories } } }) => {
-  console.log('===IMD Team ===')
-  const data = {
-    repos: repositories.nodes
-  }
+  // TEAM Repos
+  await request({ query: RepoQuery.REPOS_QUERY }).then(({ data: { viewer: { repositories } } }) => {
+    console.log('===IMD Team ===')
+    const data = {
+      repos: repositories.nodes
+    }
 
-  creatCommit({
-    path: 'imd_repos',
-    fileName: getTodayFileName(),
-    contents: data
+    creatCommit({
+      path: 'imd_repos',
+      fileName: getTodayFileName(),
+      contents: data
+    })
   })
-})
 
-// PR
-request({ query: RepoQuery.PR_QUERY }).then(({ data }) => {
-  console.log('===PR_QUERY===')
-  const { viewer: { repository: { pullRequests: { nodes } } } } = data
+  // PR
+  await request({ query: RepoQuery.PR_QUERY }).then(({ data }) => {
+    console.log('===PR_QUERY===')
+    const { viewer: { repository: { pullRequests: { nodes } } } } = data
 
-  creatCommit({
-    path: 'pr',
-    fileName: getTodayFileName(),
-    contents: { prList: nodes }
+    creatCommit({
+      path: 'pr',
+      fileName: getTodayFileName(),
+      contents: { prList: nodes }
+    })
   })
-})
+}
+
+CreateData()
