@@ -4,7 +4,7 @@
   "description": "Github을 DB처럼 사용하기",
   "main": "graphql-server/index.js",
   "scripts": {
-    "dev": "node ./graphql-server/index.js",
+    "dev": "node ./graphql-server/index.js --unhandled-rejections=strict",
     "test": "NODE_ENV=develop npm run dev"
   },
   "repository": {
