@@ -8,6 +8,8 @@ const IMDQuery = require('./query/IMD.js');
 const UserQuery = require('./query/User.js');
 const RepoQuery = require('./query/Repository.js');
 
+console.log('====Start index.js====')
+
 const CreateData = async () => {
   // Author
   const authorData = await request({ query: UserQuery.AUTHOR_QUERY })
