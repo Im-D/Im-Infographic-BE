@@ -12,8 +12,8 @@ console.log('====Start index.js====')
 
 const CreateData = async () => {
   // Author
-  const authorData = await request({ query: UserQuery.AUTHOR_QUERY })
   console.log('===Author===')
+  const authorData = await request({ query: UserQuery.AUTHOR_QUERY })
 
   const nodes = authorData.data.viewer.repository.collaborators.nodes || []
   const collaborators = nodes
@@ -31,8 +31,8 @@ const CreateData = async () => {
 
 
   // TEAM Info
-  const imdInfoData = await request({ query: IMDQuery.IMD_INFO_QUERY })
   console.log('===IMD Info ===')
+  const imdInfoData = await request({ query: IMDQuery.IMD_INFO_QUERY })
 
   await creatCommit({
     path: 'imd_info',
@@ -41,8 +41,8 @@ const CreateData = async () => {
   })
 
   // TEAM Repos
-  const imdReposData = await request({ query: RepoQuery.REPOS_QUERY })
   console.log('===IMD Team ===')
+  const imdReposData = await request({ query: RepoQuery.REPOS_QUERY })
 
   await creatCommit({
     path: 'imd_repos',
@@ -53,8 +53,8 @@ const CreateData = async () => {
   })
 
   // PR
-  const prData = await request({ query: RepoQuery.PR_QUERY })
   console.log('===PR_QUERY===')
+  const prData = await request({ query: RepoQuery.PR_QUERY })
 
   await creatCommit({
     path: 'pr',

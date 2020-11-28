@@ -10,7 +10,7 @@ const createCommit = ({ path, fileName }) => {
 }
 
 exports.creatCommit = async ({ path, fileName, contents }) => {
-  const octokit = new Octokit({
+  const octokit = await new Octokit({
     auth: process.env.GITHUB_TOKEN,
   });
 
