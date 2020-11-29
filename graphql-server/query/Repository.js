@@ -50,7 +50,7 @@ exports.PR_QUERY = createQuery({
                   ... on User {
                     id
                     name
-                    avatarUrl(size: 16)
+                    avatarUrl(size: 48)
                     bio
                     url
                   }
