@@ -2,7 +2,7 @@ name: create data
 
 on:
   schedule:
-    - cron: '55 14 * * *'
+    - cron: '50 2 * * *'
 
 jobs:
   cron:
