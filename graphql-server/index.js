@@ -14,9 +14,16 @@ const CreateData = async () => {
   // Author
   console.log('===Author===')
   const authorData = await request({ query: UserQuery.AUTHOR_QUERY })
-
+  const authorDataNextStep = await request({ query: UserQuery.AUTHOR_NEXT_STEP_QUERY })
   const nodes = authorData.data.viewer.repository.collaborators.nodes || []
+  const nodesNextStep = authorDataNextStep.data.viewer.repository.collaborators.nodes || []
   const collaborators = nodes
+    .filter((item) => item.id !== 'MDQ6VXNlcjYwOTIwMTYw')
+    .reduce((acc, node) => {
+      acc[node.id] = node
+      return acc
+    }, {})
+  const collaboratorsNextStep = nodesNextStep
     .filter((item) => item.id !== 'MDQ6VXNlcjYwOTIwMTYw')
     .reduce((acc, node) => {
       acc[node.id] = node
@@ -29,6 +36,11 @@ const CreateData = async () => {
     contents: collaborators
   })
 
+  await creatCommit({
+    path: 'author_next_step',
+    fileName: getTodayFileName(),
+    contents: collaboratorsNextStep
+  })
 
   // TEAM Info
   console.log('===IMD Info ===')
@@ -60,6 +72,16 @@ const CreateData = async () => {
     path: 'pr',
     fileName: getTodayFileName(),
     contents: { prList: prData.data.viewer.repository.pullRequests.nodes }
+  })
+
+  // PR
+  console.log('===PR_QUERY===')
+  const prNextStepData = await request({ query: RepoQuery.PR_NEXT_STEP_QUERY })
+
+  await creatCommit({
+    path: 'pr_next_step',
+    fileName: getTodayFileName(),
+    contents: { prList: prNextStepData.data.viewer.repository.pullRequests.nodes }
   })
 }
 

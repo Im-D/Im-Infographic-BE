@@ -63,3 +63,50 @@ exports.PR_QUERY = createQuery({
     }
   }`
 })
+
+
+exports.PR_NEXT_STEP_QUERY = createQuery({
+  query: `{
+    viewer {
+      repository(name: "Dev-Docs-Next-Step") {
+        pullRequests(orderBy: {field: CREATED_AT, direction: ASC}, first: 30, states: OPEN) {
+          nodes {
+            title
+            url
+            author {
+              ... on User {
+                id
+                name
+                avatarUrl(size: 16)
+                bio
+                url
+              }
+            }
+            createdAt
+            body
+            labels(first: 10) {
+              nodes {
+                id
+                color
+                name
+              }
+            }
+            reviewRequests(first: 10) {
+              nodes {
+                requestedReviewer {
+                  ... on User {
+                    id
+                    name
+                    avatarUrl(size: 48)
+                    bio
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }`
+})

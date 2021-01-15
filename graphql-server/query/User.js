@@ -17,3 +17,21 @@ exports.AUTHOR_QUERY = createQuery({
     }
   }`
 })
+
+exports.AUTHOR_NEXT_STEP_QUERY = createQuery({
+  query: `{
+    viewer {
+      repository(name: "Dev-Docs-Next-Step") {
+        collaborators {
+          nodes {
+            id
+            name
+            avatarUrl(size: 16)
+            bio
+            url
+          }
+        }
+      }
+    }
+  }`
+})
